@@ -21,6 +21,8 @@ DIR_PROCESADOS = DIR_DATOS / "processed"  # Particiones y datos transformados
 ARCHIVO_KAGGLE = DIR_CRUDOS / "cs-training.csv"
 ARCHIVO_TRAIN = DIR_PROCESADOS / "train.csv"
 ARCHIVO_TEST = DIR_PROCESADOS / "test.csv"
+ARCHIVO_TRAIN_LIMPIO = DIR_PROCESADOS / "train_limpio.csv"
+ARCHIVO_TEST_LIMPIO = DIR_PROCESADOS / "test_limpio.csv"
 
 # --- Parámetros globales -----------------------------------------------------
 SEMILLA = 42               # Semilla única para todo el proyecto

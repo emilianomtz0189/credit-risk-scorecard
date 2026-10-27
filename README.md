@@ -8,8 +8,8 @@ Modelo para estimar la **probabilidad de incumplimiento (PD)** de clientes de cr
 
 | Etapa | Notebook | Estado |
 |---|---|---|
-| 1. Descarga de datos y preparación del entorno | `01_descarga_y_entorno.ipynb` | 🔄 |
-| 2. Exploración y limpieza | — | ⏳ |
+| 1. Descarga de datos y preparación del entorno | `01_descarga_y_entorno.ipynb` | ✅ |
+| 2. Exploración y limpieza | `02_exploracion_y_limpieza.ipynb` | 🔄 |
 | 3. Agrupación de variables, WoE e IV | — | ⏳ |
 | 4. Regresión logística y scorecard | — | ⏳ |
 | 5. Modelo de comparación (gradient boosting) | — | ⏳ |
