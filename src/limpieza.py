@@ -16,6 +16,7 @@ from src.datos import obtener_particiones
 # --- Reglas de negocio ---------------------------------------------------------
 EDAD_MINIMA = 18                 # Edad mínima legal para contratar un crédito
 ATRASOS_MAXIMO_POSIBLE = 24      # En 2 años caben a lo más 24 periodos mensuales
+USO_MAXIMO_CONFIABLE = 10        # Uso de crédito > 10 veces el límite: error de captura
 VARIABLES_ATRASO = ["atrasos_30_59", "atrasos_60_89", "atrasos_90"]
 VARIABLES_A_ACOTAR = ["uso_credito_revolvente", "razon_deuda", "ingreso_mensual"]
 
@@ -27,7 +28,10 @@ class LimpiadorCredito:
     2. Atrasos mayores a 24 -> faltante (son códigos especiales, no conteos).
     3. Razón de deuda sin ingreso (faltante o cero) -> faltante: sin
        denominador, el valor no puede ser una razón deuda/ingreso.
-    4. Acota uso de crédito, razón de deuda e ingreso en el percentil 99
+    4. Uso de crédito mayor a 10 -> faltante: en el análisis exploratorio
+       esos clientes se comportan como el promedio, no como clientes
+       sobregirados, así que el valor no es confiable.
+    5. Acota uso de crédito, razón de deuda e ingreso en el percentil 99
        calculado SOLO con entrenamiento.
 
     Los faltantes no se imputan: en la etapa 3 forman su propio grupo de WoE,
@@ -51,6 +55,8 @@ class LimpiadorCredito:
 
         sin_ingreso = df["ingreso_mensual"].isna() | (df["ingreso_mensual"] == 0)
         df.loc[sin_ingreso, "razon_deuda"] = np.nan
+
+        df.loc[df["uso_credito_revolvente"] > USO_MAXIMO_CONFIABLE, "uso_credito_revolvente"] = np.nan
         return df
 
     def fit(self, df: pd.DataFrame) -> "LimpiadorCredito":
@@ -79,6 +85,7 @@ class LimpiadorCredito:
         for var in VARIABLES_ATRASO:
             conteos[f"{var} > 24 -> faltante"] = (df[var] > ATRASOS_MAXIMO_POSIBLE).sum()
         conteos["razon_deuda sin ingreso -> faltante"] = (sin_ingreso & df["razon_deuda"].notna()).sum()
+        conteos["uso_credito_revolvente > 10 -> faltante"] = (df["uso_credito_revolvente"] > USO_MAXIMO_CONFIABLE).sum()
         corregido = self._corregir_invalidos(df)
         for var in VARIABLES_A_ACOTAR:
             conteos[f"{var} > {self.topes_[var]:,.2f} -> tope"] = (corregido[var] > self.topes_[var]).sum()
