@@ -10,8 +10,8 @@ Modelo para estimar la **probabilidad de incumplimiento (PD)** de clientes de cr
 |---|---|---|
 | 1. Descarga de datos y preparación del entorno | `01_descarga_y_entorno.ipynb` | ✅ |
 | 2. Exploración y limpieza | `02_exploracion_y_limpieza.ipynb` | ✅ |
-| 3. Agrupación de variables, WoE e IV | `03_woe_iv.ipynb` | 🔄 |
-| 4. Regresión logística y scorecard | — | ⏳ |
+| 3. Agrupación de variables, WoE e IV | `03_woe_iv.ipynb` | ✅ |
+| 4. Regresión logística y scorecard | `04_scorecard.ipynb` | 🔄 |
 | 5. Modelo de comparación (gradient boosting) | — | ⏳ |
 | 6. Métricas: AUC, Gini y KS | — | ⏳ |
 | 7. Pérdida esperada y puntos de corte | — | ⏳ |

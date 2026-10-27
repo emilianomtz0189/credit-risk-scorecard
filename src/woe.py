@@ -188,7 +188,7 @@ class AgrupadorWoE:
         return cortes
 
     # --- Interfaz fit / transform -----------------------------------------------
-    def _asignar(self, serie: pd.Series, variable: str) -> pd.Series:
+    def asignar_tramos(self, serie: pd.Series, variable: str) -> pd.Series:
         cortes = self.cortes_[variable]
         etiquetas = _etiquetas(cortes, self.enteras_[variable])
         tramos = pd.cut(serie, bins=cortes, labels=etiquetas, right=True)
@@ -201,7 +201,7 @@ class AgrupadorWoE:
             self.enteras_[var] = bool((x.dropna() % 1 == 0).all())
             self.cortes_[var] = self._agrupar(x, y, monotonica=var not in self.no_monotonicas)
             orden = _etiquetas(self.cortes_[var], self.enteras_[var]) + [ETIQUETA_FALTANTE]
-            tabla = tabla_woe(self._asignar(x, var), y, orden)
+            tabla = tabla_woe(self.asignar_tramos(x, var), y, orden)
 
             # Faltantes con muy pocos clientes: sin evidencia suficiente -> riesgo promedio
             if (ETIQUETA_FALTANTE in tabla.index and
@@ -218,7 +218,7 @@ class AgrupadorWoE:
         """
         salida = pd.DataFrame(index=df.index)
         for var, tabla in self.tablas_.items():
-            tramos = self._asignar(df[var], var).astype(str)
+            tramos = self.asignar_tramos(df[var], var).astype(str)
             salida[var] = tramos.map(tabla["woe"]).fillna(0.0)
         if COLUMNA_OBJETIVO in df.columns:
             salida[COLUMNA_OBJETIVO] = df[COLUMNA_OBJETIVO]
