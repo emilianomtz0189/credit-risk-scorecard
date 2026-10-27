@@ -47,8 +47,14 @@ def tasa_malos_por_faltante(df: pd.DataFrame, columnas: list[str]) -> pd.DataFra
 
 def _etiqueta_intervalo(intervalo: pd.Interval) -> str:
     """Formato legible para un intervalo de pd.qcut."""
-    decimales = 2 if intervalo.left < 10 else 0
     izquierda = max(intervalo.left, 0)
+    def es_entero(x):
+        return abs(x - round(x)) < 0.01
+    # Enteros o montos grandes sin decimales; proporciones con 2 decimales
+    if (es_entero(izquierda) and es_entero(intervalo.right)) or intervalo.right >= 100:
+        decimales = 0
+    else:
+        decimales = 2
     return f"{izquierda:,.{decimales}f}–{intervalo.right:,.{decimales}f}"
 
 

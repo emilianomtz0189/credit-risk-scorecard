@@ -23,6 +23,8 @@ ARCHIVO_TRAIN = DIR_PROCESADOS / "train.csv"
 ARCHIVO_TEST = DIR_PROCESADOS / "test.csv"
 ARCHIVO_TRAIN_LIMPIO = DIR_PROCESADOS / "train_limpio.csv"
 ARCHIVO_TEST_LIMPIO = DIR_PROCESADOS / "test_limpio.csv"
+ARCHIVO_TRAIN_WOE = DIR_PROCESADOS / "train_woe.csv"
+ARCHIVO_TEST_WOE = DIR_PROCESADOS / "test_woe.csv"
 
 # --- Parámetros globales -----------------------------------------------------
 SEMILLA = 42               # Semilla única para todo el proyecto
