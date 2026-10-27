@@ -1,0 +1,12 @@
+# Dependencias del proyecto.
+# Las versiones se fijan (==) al terminar la etapa 1 con la salida de la celda
+# "Registro de versiones" del notebook 01, para reproducir el entorno de Colab.
+numpy
+pandas
+scikit-learn
+scipy
+statsmodels
+matplotlib
+seaborn
+xgboost
+lightgbm
