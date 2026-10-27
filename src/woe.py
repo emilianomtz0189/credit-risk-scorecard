@@ -117,7 +117,7 @@ class AgrupadorWoE:
        `min_clientes_faltante`, no hay evidencia suficiente y reciben WoE = 0.
     """
 
-    def __init__(self, n_tramos_iniciales: int = 20, pct_minimo: float = 0.05,
+    def __init__(self, n_tramos_iniciales: int = 20, pct_minimo: float = 0.02,
                  max_tramos: int = 8, min_clientes_faltante: int = 50,
                  no_monotonicas: list[str] | None = None):
         self.n_tramos_iniciales = n_tramos_iniciales
