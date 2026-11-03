@@ -128,4 +128,4 @@ Supuestos (el dataset no trae montos ni recuperaciones): exposición de $50,000 
 
 ## Autor
 
-**José Emiliano Martínez Chavira** · Actuario (UAG, Actuaría y Ciencia de Datos) · [LinkedIn](https://www.linkedin.com/in/emiliano-martinez-861175227)
+**José Emiliano Martínez Chavira** · Egresado de Actuaría y Ciencia de Datos (UAG) · [LinkedIn](https://www.linkedin.com/in/emiliano-martinez-861175227)
