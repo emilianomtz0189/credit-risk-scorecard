@@ -1,5 +1,7 @@
 # Scorecard de riesgo de crédito: probabilidad de incumplimiento y puntos de corte
 
+> **Proyecto más reciente:** [Monitoreo transaccional PLD / AML](https://github.com/emilianomtz0189/pld-monitoreo-transaccional) — reglas por tipología inspiradas en la regulación mexicana, segmentación de clientes por riesgo y un modelo LightGBM que reduce 83.5 % las alertas a revisar manteniendo el 90 % de los casos sospechosos.
+
 Modelo de **probabilidad de incumplimiento (PD)** para crédito al consumo, construido con la metodología que usan bancos y financieras: agrupación de variables con **WoE/IV**, **regresión logística** convertida en un **scorecard de puntos**, comparación contra un modelo de *machine learning* (**LightGBM**), métricas de la industria (**AUC, Gini, KS, PSI**) y una propuesta de **puntos de corte** basada en la **pérdida esperada** (PD × LGD × EAD).
 
 Datos: [*Give Me Some Credit*](https://www.kaggle.com/c/GiveMeSomeCredit) (Kaggle), 150,000 clientes con historial crediticio. Un cliente es **malo** si tuvo 90 días o más de atraso en los 2 años siguientes; la tasa de malos es de 6.68 %.
